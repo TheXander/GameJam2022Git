@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class FirstPersonCam : MonoBehaviour
 {
-    public float camRotationSpeed = 1;
+    public float camRotationSpeed = 1f;
     public Transform player;
     float mouseX, mouseY;
 
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;

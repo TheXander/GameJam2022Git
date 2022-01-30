@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class FirstPersonCam : MonoBehaviour
+public class FirstPersonCamTwo : MonoBehaviour
 {
     public float camRotationSpeed = 2f;
     public Transform player;
@@ -18,8 +18,8 @@ public class FirstPersonCam : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new PlayerInputActions();
 
-        // player 1
-        playerInputActions.Player1.Enable();
+        // player 2
+        playerInputActions.Player2.Enable();
     }
 
     void Start()
@@ -37,11 +37,8 @@ public class FirstPersonCam : MonoBehaviour
     void CamUpdate()
     {
 
-        Vector2 inputVector = playerInputActions.Player1.CameraMovement.ReadValue<Vector2>();
-
-        //mouseX += Input.GetAxis("Mouse X") * camRotationSpeed;
-        //mouseY -= Input.GetAxis("Mouse Y") * camRotationSpeed;
-
+        Vector2 inputVector = playerInputActions.Player2.CameraMovement.ReadValue<Vector2>();
+       
         mouseX += inputVector.x / camRotationSpeed;
         mouseY -= inputVector.y / camRotationSpeed;
 

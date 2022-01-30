@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerOneControls : MonoBehaviour
+public class PlayerTwoControls : MonoBehaviour
 {
     // movement
     float movementSpeed = 6;
@@ -29,14 +29,14 @@ public class PlayerOneControls : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new PlayerInputActions();
 
-        // player 1
-        playerInputActions.Player1.Enable();
+        // player 2
+        playerInputActions.Player2.Enable();
 
-        playerInputActions.Player1.PickUp.performed += PickUpObject;
-        playerInputActions.Player1.Drop.performed += DropObject;
+        playerInputActions.Player2.PickUp.performed += PickUpObject;
+        playerInputActions.Player2.Drop.performed += DropObject;
     }
 
- 
+
     private void Start()
     {
         objectCarried = null;
@@ -44,21 +44,21 @@ public class PlayerOneControls : MonoBehaviour
     }
 
     void Update()
-    {      
+    {
         PlayerMovments();
         PickUpCheck();
-    }   
+    }
 
     void PlayerMovments()
     {
-        Vector2 inputVector = playerInputActions.Player1.Movement.ReadValue<Vector2>();
+        Vector2 inputVector = playerInputActions.Player2.Movement.ReadValue<Vector2>();
 
         float HorizontalMovment = inputVector.x;
         float verticalMovment = inputVector.y;
 
         Vector3 playerMovment = ((new Vector3(HorizontalMovment, 0.0f, verticalMovment) * movementSpeed) * Time.deltaTime);
-  
-        transform.Translate(playerMovment, Space.Self);    
+
+        transform.Translate(playerMovment, Space.Self);
     }
 
     void PickUpCheck()
@@ -77,16 +77,16 @@ public class PlayerOneControls : MonoBehaviour
                 if (hit.transform.gameObject.CompareTag("PickUp"))
                 {
                     objectCarried = hit.transform.gameObject;
-                    objectDetected = true;
+                    objectDetected = true;                  
                 }
             }
         }
         else
-        {      
-            if(objectCarriedBody != null)
+        {
+            if (objectCarriedBody != null)
             {
                 MoveObject();
-            }
+            }      
         }
     }
 
@@ -110,6 +110,7 @@ public class PlayerOneControls : MonoBehaviour
 
             objectCarried.GetComponent<BoxCollider>().enabled = false;
 
+
             carryingObject = true;
         }
     }
@@ -125,7 +126,7 @@ public class PlayerOneControls : MonoBehaviour
             objectCarriedBody = null;
             objectCarried = null;
             carryingObject = false;
-        }
+        }     
     }
 
     private void OnDrawGizmos()
